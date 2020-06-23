@@ -1,0 +1,17 @@
+{
+    "version": "$LATEST",
+    "direction": "uplink",
+    "contentType": "application/json",
+    "encodingType": "plain",
+    "source": {
+        "resourceType": "Subscriber",
+        "resourceId": "44010xxxxxxxxxx"
+    },
+    "tags": {
+        "name": "My GPS Multi-unit",
+        "center_lat":"35.11111",
+        "center_lon":"139.11111",
+        "radius":"0.5"
+    },
+    "userdata": "Hello, userdata"
+}
