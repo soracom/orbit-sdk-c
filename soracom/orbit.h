@@ -20,6 +20,8 @@ size_t orbit_get_source_value_len(const char* name, size_t name_len);
 size_t orbit_get_source_value(const char* name, size_t name_len, const char* value, size_t value_len);
 size_t orbit_get_userdata_len();
 size_t orbit_get_userdata(const char* value, size_t value_len);
+size_t orbit_get_original_request_len();
+size_t orbit_get_original_request(const char* value, size_t value_len);
 int32_t orbit_has_location();
 double orbit_get_location_lat();
 double orbit_get_location_lon();
