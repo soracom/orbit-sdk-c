@@ -16,7 +16,7 @@ $(output): $(objs)
 	$(MAKE) -C ../../soracom/
 
 main.o: main.cpp
-	emcc -I../../ -c main.cpp -o main.o
+	emcc -I../../ -std=c++23 -c main.cpp -o main.o
 
 .PHONY: clean
 clean:

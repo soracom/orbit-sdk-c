@@ -36,8 +36,10 @@ void soracom_release_input_buffer(const char* buf);
 int32_t soracom_get_tag_value(const char* name, size_t name_len, const char** value, size_t* value_len);
 int32_t soracom_get_source_value(const char* name, size_t name_len, const char** value, size_t* value_len);
 int32_t soracom_get_userdata_as_string(const char** buf, size_t* siz);
-void soracom_release_userdata(const char* buf);
 void soracom_set_json_output(const char* buf, size_t siz);
+
+[[deprecated("Use soracom_release_buffer instead")]]
+void soracom_release_userdata(const char* buf);
 
 #if __cplusplus
 }

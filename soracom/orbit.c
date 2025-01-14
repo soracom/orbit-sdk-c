@@ -176,7 +176,7 @@ int32_t soracom_get_original_request_as_string(const char** buf, size_t* siz) {
  *
  * @param buf [in] The pointer to the allocated
  *
- * @note The pointer buf is allocated by 
+ * @note The pointer buf is allocated by
  * - soracom_get_userdata_as_string().
  * - soracom_get_original_request_as_string().
  */
@@ -191,8 +191,9 @@ void soracom_release_buffer(const char* buf) {
  *
  * @note The pointer buf is allocated by soracom_get_userdata_as_string().
  * @deprecated Use soracom_release_buffer instead
- * 
+ *
  */
+[[deprecated("Use soracom_release_buffer instead")]]
 void soracom_release_userdata(const char* buf) {
     soracom_release_buffer(buf);
 }
