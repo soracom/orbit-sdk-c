@@ -67,17 +67,6 @@ int32_t soracom_get_input_buffer(const char** buf, size_t* siz) {
 }
 
 /**
- * Release the input buffer.
- *
- * @param buf [in] The pointer to the allocated input buffer.
- *
- * @note The pointer buf is allocated by either soracom_get_input_buffer() or soracom_get_input_buffer_as_string().
- */
-void soracom_release_input_buffer(const char* buf) {
-    free((void*)(buf));
-}
-
-/**
  * Get a tag value corresponding to the specified tag name.
  *
  * @param name [in] The name of the tag.
@@ -195,6 +184,20 @@ void soracom_release_buffer(const char* buf) {
  */
 [[deprecated("Use soracom_release_buffer instead")]]
 void soracom_release_userdata(const char* buf) {
+    soracom_release_buffer(buf);
+}
+
+
+/**
+ * Release the input buffer.
+ *
+ * @param buf [in] The pointer to the allocated input buffer.
+ *
+ * @note The pointer buf is allocated by either soracom_get_input_buffer() or soracom_get_input_buffer_as_string().
+ * @deprecated Use soracom_release_buffer instead
+ */
+[[deprecated("Use soracom_release_buffer instead")]]
+void soracom_release_input_buffer(const char* buf) {
     soracom_release_buffer(buf);
 }
 
