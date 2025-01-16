@@ -67,17 +67,6 @@ int32_t soracom_get_input_buffer(const char** buf, size_t* siz) {
 }
 
 /**
- * Release the input buffer.
- *
- * @param buf [in] The pointer to the allocated input buffer.
- *
- * @note The pointer buf is allocated by either soracom_get_input_buffer() or soracom_get_input_buffer_as_string().
- */
-void soracom_release_input_buffer(const char* buf) {
-    free((void*)(buf));
-}
-
-/**
  * Get a tag value corresponding to the specified tag name.
  *
  * @param name [in] The name of the tag.
@@ -129,7 +118,7 @@ int32_t soracom_get_source_value(const char* name, size_t name_len, const char**
  * @param buf [out] A pointer to the allocated memory.
  * @param siz [out] The length of the string.
  *
- * @note The pointer received in buf should be released by calling soracom_release_userdata().
+ * @note The pointer received in buf should be released by calling soracom_release_buffer().
  *
  * @return ERR_OK: successfully retrieved the userdata.
  *         ERR_INVALID_ARG: buf or siz is null.
@@ -147,14 +136,69 @@ int32_t soracom_get_userdata_as_string(const char** buf, size_t* siz) {
 }
 
 /**
+ * Get the original request as a null terminated string.
+ *
+ * @param buf [out] A pointer to the allocated memory.
+ * @param siz [out] The length of the string.
+ *
+ * @note The pointer received in buf should be released by calling soracom_release_buffer().
+ *
+ * @return ERR_OK: successfully retrieved the userdata.
+ *         ERR_INVALID_ARG: buf or siz is null.
+ */
+
+int32_t soracom_get_original_request_as_string(const char** buf, size_t* siz) {
+    if ((buf == NULL) || (siz == NULL)) {
+        return ERR_INVALID_ARG;
+    }
+
+    *siz = orbit_get_original_request_len();
+    *buf = (const char*) malloc(*siz + 1);
+    memset((void*)(*buf), 0, *siz + 1);
+    orbit_get_original_request(*buf, *siz);
+    return ERR_OK;
+}
+
+
+/**
+ * Release the buffer memory.
+ *
+ * @param buf [in] The pointer to the allocated
+ *
+ * @note The pointer buf is allocated by
+ * - soracom_get_userdata_as_string().
+ * - soracom_get_original_request_as_string().
+ */
+void soracom_release_buffer(const char* buf) {
+    free((void*)(buf));
+}
+
+/**
  * Release the userdata.
  *
  * @param buf [in] The pointer to the allocated userdata.
  *
  * @note The pointer buf is allocated by soracom_get_userdata_as_string().
+ * @deprecated Use soracom_release_buffer instead
+ *
  */
+[[deprecated("Use soracom_release_buffer instead")]]
 void soracom_release_userdata(const char* buf) {
-    free((void*)(buf));
+    soracom_release_buffer(buf);
+}
+
+
+/**
+ * Release the input buffer.
+ *
+ * @param buf [in] The pointer to the allocated input buffer.
+ *
+ * @note The pointer buf is allocated by either soracom_get_input_buffer() or soracom_get_input_buffer_as_string().
+ * @deprecated Use soracom_release_buffer instead
+ */
+[[deprecated("Use soracom_release_buffer instead")]]
+void soracom_release_input_buffer(const char* buf) {
+    soracom_release_buffer(buf);
 }
 
 /**

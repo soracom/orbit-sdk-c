@@ -1,0 +1,17 @@
+{
+    "name": "C23 Emscripten Development",
+    "dockerFile": "Dockerfile",
+    "context": "..",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools"
+            ],
+            "settings": {
+                "C_Cpp.intelliSenseEngine": "Default",
+                "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+            }
+        }
+    }
+}

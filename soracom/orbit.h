@@ -20,6 +20,8 @@ size_t orbit_get_source_value_len(const char* name, size_t name_len);
 size_t orbit_get_source_value(const char* name, size_t name_len, const char* value, size_t value_len);
 size_t orbit_get_userdata_len();
 size_t orbit_get_userdata(const char* value, size_t value_len);
+size_t orbit_get_original_request_len();
+size_t orbit_get_original_request(const char* value, size_t value_len);
 int32_t orbit_has_location();
 double orbit_get_location_lat();
 double orbit_get_location_lon();
@@ -30,12 +32,15 @@ void orbit_set_output_content_type(const char* buf, size_t siz);
 void soracom_log(const char* fmt, ...);
 int32_t soracom_get_input_buffer_as_string(const char** buf, size_t* siz);
 int32_t soracom_get_input_buffer(const char** buf, size_t* siz);
-void soracom_release_input_buffer(const char* buf);
 int32_t soracom_get_tag_value(const char* name, size_t name_len, const char** value, size_t* value_len);
 int32_t soracom_get_source_value(const char* name, size_t name_len, const char** value, size_t* value_len);
 int32_t soracom_get_userdata_as_string(const char** buf, size_t* siz);
-void soracom_release_userdata(const char* buf);
 void soracom_set_json_output(const char* buf, size_t siz);
+
+[[deprecated("Use soracom_release_buffer instead")]]
+void soracom_release_input_buffer(const char* buf);
+[[deprecated("Use soracom_release_buffer instead")]]
+void soracom_release_userdata(const char* buf);
 
 #if __cplusplus
 }
