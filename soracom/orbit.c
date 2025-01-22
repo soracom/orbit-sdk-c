@@ -113,6 +113,27 @@ int32_t soracom_get_source_value(const char* name, size_t name_len, const char**
 }
 
 /**
+ * Set the tag value of requesting resource (example: SIM)
+ *
+ * @param name [in] tag name
+ * @param value [in] tag value
+ * 
+ */
+void set_tag_value(const char* name, const char* value) {
+    orbit_set_tag_value(name, strlen(name), value, strlen(value));
+}
+
+/**
+ * Delete the tag of requesting resource (example: SIM)
+ *
+ * @param name [in] tag name
+ * 
+ */
+void delete_tag(const char* name) {
+    orbit_delete_tag_value(name, strlen(name));
+}
+
+/**
  * Get the userdata as a null terminated string.
  *
  * @param buf [out] A pointer to the allocated memory.
