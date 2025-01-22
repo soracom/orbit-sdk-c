@@ -28,6 +28,8 @@ double orbit_get_location_lon();
 int64_t orbit_get_timestamp();
 void orbit_set_output(const char* buf, size_t siz);
 void orbit_set_output_content_type(const char* buf, size_t siz);
+void orbit_set_tag_value(const char* name, size_t name_len, const char* value, size_t value_len);
+void orbit_delete_tag_value(const char* name, size_t name_len);
 
 void soracom_log(const char* fmt, ...);
 int32_t soracom_get_input_buffer_as_string(const char** buf, size_t* siz);
