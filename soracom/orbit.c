@@ -119,7 +119,7 @@ int32_t soracom_get_source_value(const char* name, size_t name_len, const char**
  * @param value [in] tag value
  * 
  */
-void set_tag_value(const char* name, const char* value) {
+void soracom_set_tag_value(const char* name, const char* value) {
     orbit_set_tag_value(name, strlen(name), value, strlen(value));
 }
 
@@ -129,7 +129,7 @@ void set_tag_value(const char* name, const char* value) {
  * @param name [in] tag name
  * 
  */
-void delete_tag(const char* name) {
+void soracom_delete_tag(const char* name) {
     orbit_delete_tag_value(name, strlen(name));
 }
 
